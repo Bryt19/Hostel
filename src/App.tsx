@@ -9,7 +9,13 @@ import slideCheckin from './assets/slideshow/checkin.png';
 import slideSocial from './assets/slideshow/social.jpg';
 import slideAsset from './assets/slideshow/asset.png';
 
-// --- ICONS ---
+// --- CLEAN ICONS ---
+const HomeIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>;
+const LayoutIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>;
+const ShieldIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>;
+const QuoteIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>;
+const PhoneIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>;
+
 const RoomIcon = () => <svg width="28" height="28" fill="none" stroke="#2563EB" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>;
 const RegIcon = () => <svg width="28" height="28" fill="none" stroke="#2563EB" strokeWidth="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg>;
 const PayIcon = () => <svg width="28" height="28" fill="none" stroke="#2563EB" strokeWidth="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M7 15h2"/></svg>;
@@ -100,11 +106,11 @@ const FeatureBlock = ({ title, desc, points, image, icon, reverse }: any) => (
 );
 
 const AdvancedFeature = ({ icon, title }: any) => (
-  <div className="advanced-feature-card" style={{ textAlign: 'center', padding: '24px', background: 'rgba(255,255,255,0.4)', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)' }}>
-    <div className="icon-wrapper" style={{ width: '56px', height: '56px', background: 'white', borderRadius: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', boxShadow: '0 8px 16px rgba(0,0,0,0.04)', color: '#2563EB', transition: '0.3s' }}>
+  <div className="advanced-feature-card">
+    <div className="icon-wrapper">
       {icon}
     </div>
-    <h4 style={{ fontSize: '16px', color: '#111827', fontWeight: '600' }}>{title}</h4>
+    <h4>{title}</h4>
   </div>
 );
 
@@ -241,27 +247,35 @@ const App = () => {
       <div className={`mobile-backdrop ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(false)}></div>
       <div className={`mobile-menu-overlay ${menuOpen ? 'open' : ''}`}>
         <button className="close-btn" onClick={() => setMenuOpen(false)}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
         </button>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '8px', width: '100%' }}>
-          <div className="secular" style={{ color: '#2563EB', fontSize: '18px', padding: '0 30px', marginBottom: '20px', opacity: 0.6 }}>Navigation</div>
-          <a href="#features" onClick={() => setMenuOpen(false)}>
-            <RoomIcon /> Features
-          </a>
-          <a href="#benefits" onClick={() => setMenuOpen(false)}>
-            <SecureIcon /> Benefits
-          </a>
-          <a href="#testimonials" onClick={() => setMenuOpen(false)}>
-            <MailIcon color="currentColor" /> Testimonials
-          </a>
-          <a href="#contact" onClick={() => setMenuOpen(false)}>
-            <PayIcon /> Contact
-          </a>
+        <div className="mobile-menu-content">
+          <div className="menu-group">
+            <span className="group-label">Navigation</span>
+            <a href="#hero" onClick={() => setMenuOpen(false)} className="menu-item">
+              <div className="icon-box"><HomeIcon /></div>
+              <span>Home</span>
+            </a>
+            <a href="#features" onClick={() => setMenuOpen(false)} className="menu-item">
+              <div className="icon-box"><LayoutIcon /></div>
+              <span>Features</span>
+            </a>
+            <a href="#benefits" onClick={() => setMenuOpen(false)} className="menu-item">
+              <div className="icon-box"><ShieldIcon /></div>
+              <span>Benefits</span>
+            </a>
+            <a href="#testimonials" onClick={() => setMenuOpen(false)} className="menu-item">
+              <div className="icon-box"><QuoteIcon /></div>
+              <span>Testimonials</span>
+            </a>
+            <a href="#contact" onClick={() => setMenuOpen(false)} className="menu-item">
+              <div className="icon-box"><PhoneIcon /></div>
+              <span>Contact</span>
+            </a>
+          </div>
           
-          <div style={{ width: 'calc(100% - 60px)', height: '1px', background: '#F1F5F9', margin: '20px 30px' }}></div>
-          
-          <div style={{ padding: '0 30px', width: '100%' }}>
-            <button className="btn-primary" style={{ width: '100%', height: '54px' }}>Contact Sales</button>
+          <div className="menu-footer">
+            <button className="btn-primary" style={{ width: '100%', height: '44px', fontSize: '14px', borderRadius: '10px' }}>Contact Sales</button>
           </div>
         </div>
       </div>
